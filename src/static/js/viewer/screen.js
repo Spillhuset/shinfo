@@ -48,8 +48,8 @@ async function displaySlide(existingSlide, sendIfDone = true, forceNewRender = f
 
   if (!nextSlide) {
     if (existingSlide === false) {
-      slide1.classList.add("hidden");
-      slide2.classList.add("hidden");
+      if (!slide1.classList.contains("hidden")) slide1.classList.add("hidden");
+      if (!slide2.classList.contains("hidden")) slide2.classList.add("hidden");
       currentSlide = null;
       displayBackground();
     }

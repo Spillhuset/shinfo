@@ -30,8 +30,8 @@ async function displaySlide(existingSlide) {
     slide2 = document.getElementById('slide2');
 
   if (!nextSlide) {
-    slide1.classList.add("hidden");
-    slide2.classList.add("hidden");
+    if (!slide1.classList.contains("hidden")) slide1.classList.add("hidden");
+    if (!slide2.classList.contains("hidden")) slide2.classList.add("hidden");
     displayBackground();
     return console.log("No slide is set up for this slideshow, waiting for next update through WS");
   }
