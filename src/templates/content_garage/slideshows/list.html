@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Slideshows{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Slideshows</h1>
+  <p>
+    En slideshow er som en PowerPoint-presentasjon, veldig enkelt. Slideshows inneholder slides,
+    og et slideshow kan kobles sammen med en skjerm og en tidsperiode for å vises.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Liste over slideshows</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 auto-rows-fr gap-8">
+    {% for slideshow in slideshows|dictsort:"name" %}
+      <div class="rounded-lg px-2 py-3 bg-gray-800">
+        <h3 class="text-lg font-bold text-center">{{ slideshow.name }} <a href="{% url 'view_slideshow' slideshow.id %}"><i class="fa-solid fa-external-link"></i></a></h3>
+        <div class="border-y border-white mt-2 mb-2 w-full"></div>
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe src="{% url 'slideshow_viewer' slideshow.id %}" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+    {% empty %}
+      <p class="italic">Ingen skjermer er registrert på denne enheten.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

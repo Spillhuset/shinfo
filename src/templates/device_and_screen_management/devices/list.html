@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Enheter{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Enheter</h1>
+  <p>
+En enhet i denne sammenhengen er en fysisk enhet som er koblet til infoskjermsystemet.
+    Vi har både små enheter som en liten Raspberry Pi, og større enheter som en gammel PC.
+    Det avhenger av tilgjengeligheten til der infoskjermen skal settes opp, behovet av det
+    innholdet som skal vises (eks. noen infoskjermer trenger et kraftigere skjermkort) og
+    enheter som er tilgjengelig.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Hvordan legger jeg til en enhet?</h2>
+  <p>
+    Det er mange steg som må til for å sette opp en enhet, og det er derfor kun Glenn som
+    kan sette opp en ny enhet.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Liste over konfigurerte enheter</h2>
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th class="sr-only">Aktiv</th>
+        <th class="text-left font-bold">Navn</th>
+        <th class="text-left font-bold">Skjermer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for device in devices|dictsortreversed:"enabled" %}
+        <tr>
+          {% if device.pulsing %}
+            <td class="w-0 pr-1 text-green-300"><i class="fa-solid fa-heart-pulse"></i></td>
+          {% elif device.enabled %}
+            <td class="w-0 pr-1 text-orange-300"><i class="fa-solid fa-circle-question"></i></td>
+          {% else %}
+            <td class="w-0 pr-1 text-red-300"><i class="fa-solid fa-square-xmark"></i></td>
+          {% endif %}
+          <td class="mx-1">
+            {{ device.name }}
+            <a href="{% url 'view_device' device.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td>
+          <td class="mx-1">
+            {% for screen in device.screens.all %}
+              {{ screen }}
+              <a href="{% url 'view_screen' screen.id %}"><i class="ml-1 fa-solid fa-external-link"></i></a>
+              {% if not forloop.last %}, {% endif %}
+            {% empty %}
+              <i>Ingen</i>
+            {% endfor %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4" class="italic mx-4">Ingen enheter er lagt til enda, men de vises her</td>
+        </tr>
+      {% endfor %}
+  </table>
+
+  {% include "legend.html" with legends="device-status" %}
+{% endblock %}

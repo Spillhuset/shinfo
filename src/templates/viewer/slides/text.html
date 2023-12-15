@@ -1,0 +1,16 @@
+<div class="h-full w-full px-28 py-24">
+  <h1 class="text-9xl pb-8">
+    {% if data.title %}
+      {{ data.title }}
+    {% else %}
+      {% lorem 2 w random %}
+    {% endif %}
+  </h1>
+  <p class="text-7xl">
+    {% if data.body %}
+      {{ data.body }}
+    {% else %}
+      {% lorem 40 w random %}
+    {% endif %}
+  </p>
+</div>

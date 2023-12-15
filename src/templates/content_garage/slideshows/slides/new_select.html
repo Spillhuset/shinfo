@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Ny slide til {{ slideshow }}{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Opprett ny slide til {{ slideshow }}</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 auto-rows-fr gap-8">
+    {% for template in slide_templates %}
+      <div class="rounded-lg px-2 py-3 bg-gray-800">
+        <h2 class="text-xl font-bold text-center">{{ template.1 }} <a href="{% url "new_slide" slideshow.id template.0 %}"><i class="fa-solid fa-brush text-green-500 hover:text-green-600"></i></a></h2>
+        <div class="border-y border-white mt-2 mb-2 w-full"></div>
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe src="{% url 'slide_template_viewer' template.0 %}" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

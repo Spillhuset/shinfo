@@ -1,0 +1,16 @@
+<div>
+  <label for="data-title">Tittel</label>
+  <input class="bg-gray-700 rounded-lg py-1 my-1 px-2" type="text" name="data-title" value="{{ slide.template_data.title }}" placeholder="{% lorem 2 w random %}" required>
+</div>
+<div>
+  <label for="data-body">Tekst</label>
+  <textarea class="bg-gray-700 rounded-lg py-1 my-1 px-2" rows="4" type="text" name="data-body" placeholder="{% lorem 40 w random %}" required>{{ slide.template_data.body }}</textarea>
+</div>
+<div>
+  <label for="data-image_url">Bilde URL</label>
+  <input class="bg-gray-700 rounded-lg py-1 my-1 px-2" type="url" name="data-image_url" value="{{ slide.template_data.image_url }}" placeholder="(du kan laste opp et bilde gjennom Assets-fanen til venstre)" required>
+</div>
+<div>
+  <label for="data-opacity">Mørkhet på bilde</label>
+  <input class="bg-gray-700 rounded-lg py-1 my-1 px-2" type="range" name="data-opacity" min="0" max="100" placeholder="{% lorem 40 w random %}" required>{{ slide.template_data.body }}</textarea>
+</div>

@@ -1,0 +1,12 @@
+<ul class="border-t border-white text-sm w-full mt-16 list-none flex flex-wrap gap-4 [&>li]:flex-nowrap">
+  {% for legend in legends.split %}
+    {% if legend == "device-status" or legend == "screen-status" %}
+      <li><i class="fa-solid fa-heart-pulse text-green-300"></i> = enhet/skjerm i bruk (live)</li>
+      <li><i class="fa-solid fa-circle-question text-orange-300"></i> = enhet/skjerm aktivert men ikke i bruk</li>
+      <li><i class="fa-solid fa-square-xmark text-red-300"></i> = enhet/skjerm deaktivert</li>
+    {% elif legend == "schedule-status" %}
+      <li><i class="fa-solid fa-circle-play text-green-300"></i> = tidsperiode aktiv</li>
+      <li><i class="fa-solid fa-circle-pause text-orange-300"></i> = tidsperiode inaktiv</li>
+    {% endif %}
+  {% endfor %}
+</ul>

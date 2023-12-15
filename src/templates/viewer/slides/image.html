@@ -1,0 +1,4 @@
+{% load static %}
+<div class="h-full w-full">
+  <img src="{% if data.image_url %}{{ data.image_url }}{% else %}{% static "img/glenn_tommel_opp.jpg" %}{% endif %}" class="object-cover">
+</div>

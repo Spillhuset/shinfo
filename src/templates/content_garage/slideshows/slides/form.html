@@ -1,0 +1,8 @@
+<form class="px-2 py-3 my-3" method="post">
+  {% csrf_token %}
+  <div class="flex flex-col mx-auto gap-5 [&>div]:flex [&>div]:flex-col lg:[&>div]:flex-row lg:[&>div]:items-center [&>div>*]:w-full lg:[&>div>label]:w-1/5 [&>div>label]:text-lg">
+    {% include "./properties/common.html" %}
+    {{ slide_template_properties }}
+    <input type="submit" value="{{ button_text }}" class="bg-green-500 hover:bg-green-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2">
+  </div>
+</form>

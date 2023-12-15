@@ -1,0 +1,15 @@
+{% extends './template.html' %}
+
+{% load static %}
+{% block more_head %}
+  <script src="{% static 'js/viewer/slideshow.js' %}"></script>
+  <script src="{% static 'js/viewer/ws.js' %}"></script>
+{% endblock %}
+
+{% block title %}{{ slideshow }}{% endblock %}
+
+{% block content %}
+  <div id="background"></div>
+  <div id="slide1"></div>
+  <div id="slide2" class="hidden"></div>
+{% endblock %}

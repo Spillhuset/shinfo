@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "shinfo"
+version = "0.0.0"
+description = ""
+authors = ["Glenn <glenn@not-tech.support>"]
+license = "MIT"
+readme = "docs/README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.0"
+django = "4.2.6"
+gunicorn = "21.2.0"
+pyjwt = "2.8.0"
+psycopg2-binary = "2.9.9"
+fontawesomefree = "6.4.2"
+django-google-fonts = "0.0.3"
+django-tailwind = {extras = ["reload"], version = "3.6.0"}
+crispy-tailwind = "0.5.0"
+django-crispy-forms = "2.0"
+cron-validator = "^1.0.8"
+daphne = "^4.0.0"
+channels = "^4.0.0"
+channels-redis = "^4.1.0"
+paramiko = "^3.3.1"
+django-mermaid = "^0.0.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

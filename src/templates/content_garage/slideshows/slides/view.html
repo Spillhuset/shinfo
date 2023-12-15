@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ slide.name }} til {{ slideshow }}{% endblock %}
+
+{% block content %}
+
+<div class="border-b border-white pt-3 pb-2 mb-2 flex flex-col sm:flex-row items-center">
+    <h1 class="text-2xl font-bold">{{ slide.name }} til {{ slideshow }}</h1>
+    <div class="sm:ml-auto">
+      <a class="bg-red-500 hover:bg-red-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 whitespace-nowrap" href="{% url 'delete_slide' slideshow.id slide.id %}">Slett slide</a>
+      <a class="bg-blue-500 hover:bg-blue-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 whitespace-nowrap" href="{% url 'view_slideshow' slideshow.id %}">Gå til slideshow</a>
+    </div>
+  </div>
+
+  <div class="bg-gray-800 rounded-lg py-4 px-4">
+    <div class="aspect-w-16 aspect-h-9">
+      <iframe src="{% url 'slide_viewer' slide.id %}" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+
+  {% include "./form.html" with button_text="Oppdater slide" %}
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Slideshow: {{ slideshow }}{% endblock %}
+
+{% load static %}
+{% block head %}
+  <script src="{% static 'js/sortable_simple_order_and_post.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="border-b border-white pt-3 pb-2 mb-2 flex flex-col sm:flex-row items-center gap-2">
+    <h1 class="text-2xl font-bold">Slideshow: {{ slideshow }}</h1>
+    <div class="sm:ml-auto">
+      <a class="bg-blue-500 hover:bg-blur-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 whitespace-nowrap" href="{% url 'slideshow_viewer' slideshow.id %}">Se i fullskjerm</a>
+      <a class="bg-blue-500 hover:bg-blur-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 whitespace-nowrap" href="{% url 'list_slideshows' %}">Gå til listen</a>
+    </div>
+  </div>
+
+  <div class="bg-gray-800 rounded-lg py-4 px-4">
+    <div class="aspect-w-16 aspect-h-9">
+      <iframe src="{% url 'slideshow_viewer' slideshow.id %}" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+
+  <form class="bg-gray-800 rounded-lg px-2 py-3 mx-auto sm:mx-0 my-3 w-min" method="post">
+    <input type="hidden" name="type" value="change_background">
+    {% csrf_token %}
+    <div class="flex flex-col sm:flex-row items-center w-min">
+      <select name="background" class="bg-gray-700 rounded-lg py-1 my-1 px-2 sm:my-0 sm:mr-2" required>
+        <option value="null" {% if not slideshow.background %}selected{% endif %}>Ingen (arver fra skjerm)</option>
+        {% for background in backgrounds %}
+          <option value="{{ background.0 }}" {% if slideshow.background == background.0 %}selected{% endif %}>{{ background.1 }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Sett standard bakgrunn" class="bg-green-500 hover:bg-green-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2">
+    </div>
+  </form>
+
+  <h2 class="text-xl font-bold pt-3 pb-1 text-center sm:text-left">Skjermer og tidsperioder</h2>
+  <form class="bg-gray-800 rounded-lg px-2 py-3 mx-auto sm:mx-0 my-3 w-min" method="post">
+    <input type="hidden" name="type" value="add_s3">
+    {% csrf_token %}
+    <div class="flex flex-col sm:flex-row items-center w-min">
+      <select name="screen" class="bg-gray-700 rounded-lg py-1 my-1 px-2 sm:my-0 sm:mr-2" required>
+        <option value="" disabled selected>Velg skjerm</option>
+        {% for screen in screens %}
+          <option value="{{ screen.id }}">{{ screen }}</option>
+        {% endfor %}
+      </select>
+      <select name="schedule" class="bg-gray-700 rounded-lg py-1 my-1 px-2 sm:my-0 sm:mr-2" required>
+        <option value="" disabled selected>Velg tidsperiode</option>
+        {% for schedule in schedules %}
+          <option value="{{ schedule.id }}">{{ schedule }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Koble sammen" class="bg-green-500 hover:bg-green-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2">
+    </div>
+  </form>
+  <table class="table-fixed w-full">
+    <thead>
+      <tr>
+        <th class="font-bold text-center sm:text-left">Skjerm</th>
+        <th class="font-bold text-center sm:text-left">Tidsperiode</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for screen_schedule in slideshow.screen_schedules.all|dictsortreversed:"schedule.cron_active"|dictsort:"screen.name" %}
+        <tr>
+          <td class="whitespace-nowrap text-center sm:text-left">
+            {% if screen_schedule.screen.pulsing %}
+              <i class="fa-solid fa-heart-pulse text-green-300"></i>
+            {% elif screen_schedule.screen.enabled %}
+              <i class="fa-solid fa-circle-question text-orange-300"></i>
+            {% else %}
+              <i class="fa-solid fa-square-xmark text-red-300"></i>
+            {% endif %}
+            {{ screen_schedule.screen }}
+            <a href="{% url 'view_screen' screen_schedule.screen.id %}"><i class="fa-solid fa-external-link"></i></a>
+          </td>
+          <td class="whitespace-nowrap text-center sm:text-left">
+            {% if screen_schedule.schedule.cron_active %}
+              <i class="fa-solid fa-circle-play text-green-300"></i>
+            {% else %}
+              <i class="fa-solid fa-circle-pause text-orange-300"></i>
+            {% endif %}
+            {{ screen_schedule.schedule.name }}
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2" class="text-center italic">Ingen skjermer eller tidsperioder</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2 class="text-xl font-bold pt-3 pb-1 text-center sm:text-left">Slides <a href="{% url 'new_slide_select' slideshow.id %}" class="text-green-500"><i class="fa-solid fa-square-plus"></i></a></h2>
+  <div id="sortable" class="grid grid-cols-1 {% if not screen.slideshow_schedules.all|length == 1 %}md:grid-cols-2{% endif %} auto-rows-fr gap-8">
+    {% for slide in slideshow.slides.all|dictsort:"order" %}
+      <div data-order-id="{{ slide.id }}" class="rounded-lg px-2 py-3 bg-gray-800">
+        <div class="flex flex-row items-center pl-2 pr-3">
+          <p class="text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-arrows-alt text-sm cursor-grab sortable-handle"></i> {{ slide.order }}</p>
+          <h3 class="text-lg font-bold text-center w-full">
+            {{ slide.name }}
+          </h3>
+          <a class="text-sm" href="{% url 'view_slide' slideshow.id slide.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+        <div class="border-y border-white mt-2 mb-2 w-full"></div>
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe src="{% url 'slide_viewer' slide.id %}" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+    {% empty %}
+      <p class="italic">Ingen slides er registrert på dette slideshowet.</p>
+    {% endfor %}
+  </div>
+
+  <form id="form-order" method="post">
+    <input type="hidden" name="type" value="order">
+    {% csrf_token %}
+    <input id="form-order-input" type="hidden" name="new_order" value="">
+    <button type="submit"></button>
+  </form>
+{% endblock %}

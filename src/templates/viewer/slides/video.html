@@ -1,0 +1,4 @@
+{% load static %}
+<div class="h-full w-full">
+  <video src="{% if data.video_url %}{{ data.video_url }}{% else %}{% static "videos/pc_i_taket.mp4" %}{% endif %}" class="object-contain h-full w-full" autoplay loop muted>
+</div>

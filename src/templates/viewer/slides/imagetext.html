@@ -1,0 +1,22 @@
+{% load static %}
+<div class="h-full w-full px-28 py-24 grid grid-cols-3 gap-8">
+  <div class="col-span-2">
+    <h1 class="text-9xl pb-8">
+      {% if data.title %}
+        {{ data.title }}
+      {% else %}
+        {% lorem 1 w random %}
+      {% endif %}
+    </h1>
+    <p class="text-7xl">
+      {% if data.body %}
+        {{ data.body }}
+      {% else %}
+        {% lorem 15 w random %}
+      {% endif %}
+    </p>
+  </div>
+  <div class="col-span-1 w-full h-full">
+    <img src="{% if data.image_url %}{{ data.image_url }}{% else %}{% static "img/glenn_tommel_opp.jpg" %}{% endif %}" class="rounded-2xl min-w-full min-h-full object-cover">
+  </div>
+</div>

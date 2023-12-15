@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Asset: {{ asset.name }}{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Asset: {{ asset.name }}</h1>
+  <div class="w-full sm:w-3/4 mx-auto">
+    <input type="text" class="bg-gray-700 rounded-lg py-1 my-1 px-2 w-full" type="text" disabled=disabled value="{{ asset.current.file.url }}">
+  </div>
+  {% if asset.current.file_html_tag == "image" %}
+    <img class="w-full pt-2" src="{{ asset.current.file.url }}" alt="{{ asset.name }}" />
+  {% elif asset.current.file_html_tag == "video" %}
+    <video class="w-full pt-2" src="{{ asset.current.file.url }}" controls></video>
+  {% else %}
+    <iframe class="w-full h-96 pt-2 bg-white" src="{{ asset.current.file.url }}" allowtransparency="true"></iframe>
+  {% endif %}
+
+  <form class="bg-gray-800 rounded-lg px-2 py-3 mx-auto my-3 w-min" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="flex flex-col sm:flex-row items-center w-min">
+      <label for="file" class="sr-only">Fil:</label>
+      <input type="file" name="file" id="file" class="bg-gray-700 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-1" required>
+      <input type="submit" value="Oppdater asset" class="bg-green-500 hover:bg-green-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 sm:mr-1">
+    </div>
+  </form>
+
+  <table class="table-fixed w-full">
+    <thead>
+      <tr>
+        <th class="text-left font-bold w-36">Oppdatert</th>
+        <th class="text-left font-bold w-36 hidden md:table-cell">Oppdatert av</th>
+        <th class="text-left font-bold">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for version in asset.version_log.all|dictsortreversed:"created_at" %}
+        <tr>
+          <td class="">{{ version.created_at|date:"j.b Y, H:i" }}</td>
+          <td class="hidden md:table-cell">{{ version.created_by.first_name }}</td>
+          <td class="mx-1">
+            <div class="flex flex-row gap-2">
+              <p class="truncate">{{ version.file.url }}</p>
+              <a href="{{ version.file.url }}"><i class="fa-solid fa-external-link"></i></a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+  </table>
+{% endblock %}

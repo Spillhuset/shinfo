@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Tidsperioder{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Tidsperioder</h1>
+  <p>
+    En tidsperiode i denne sammenhengen er en periode der en skjerm viser en slideshow.
+    Mekanismen bak det er basert på et system med navnet "cron" og dette er en standard
+    måte å definere tidsperioder på. Det er relativt enkelt for systemutviklere å definere
+    en tidsperiode på denne måten, og enkelt for systemet å bruke. Som en vanlig bruker så
+    kan du ikke definere en tidsperiode, du kan bare se hvilke tidsperioder som er definert,
+    om de er aktive og hva de gjør. Du kan også koble dem opp til en slideshow. Hvis du vil
+    ha en tidsperiode som ikke er definert så må du ta kontakt med Glenn.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Konfigurerte tidsperioder</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 auto-rows-fr gap-8">
+  {% for schedule in schedules %}
+    <div class="rounded-lg px-2 py-3 text-center {% if schedule.cron_active %}bg-green-800{% else %}bg-rose-800{% endif %}">
+      <h3 class="text-lg font-bold">{{ schedule.name }}</h3>
+      <p>{{ schedule.cron_explanation }}</p>
+      <div class="border-y border-white mt-2 mb-2 w-full"></div>
+      <table class="table-fixed w-full">
+        <thead>
+          <tr>
+            <th class="text-center font-bold">Slideshow</th>
+            <th class="text-center font-bold">Skjerm</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for screen_slideshow in schedule.screen_slideshows.all|dictsort:"slideshow" %}
+            <tr>
+              <td class="mx-1">
+                {{ screen_slideshow.slideshow }}
+                <a href="{% url 'view_slideshow' screen_slideshow.slideshow.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+              </td>
+              <td class="text-center">
+                {% if screen_slideshow.screen.pulsing %}
+                  <i class="fa-solid fa-heart-pulse text-green-300"></i>
+                {% elif screen_slideshow.screen.enabled %}
+                  <i class="fa-solid fa-circle-question text-orange-300"></i>
+                {% else %}
+                  <i class="fa-solid fa-square-xmark text-red-300"></i>
+                {% endif %}
+                {{ screen_slideshow.screen }}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="2" class="text-center italic">Ingen skjermer eller slideshows</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}

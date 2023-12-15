@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Ny {{ slide_template_name }} slide til {{ slideshow }}{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Opprett ny {{ slide_template_name }} slide til {{ slideshow }}</h1>
+
+  {% include "./form.html" with button_text="Opprett slide" %}
+{% endblock %}

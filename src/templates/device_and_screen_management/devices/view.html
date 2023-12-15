@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Enhet: {{ device.name }}{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">
+    Enhet: {{ device.name }}
+    {% if device.pulsing %}
+      <i class="fa-solid fa-heart-pulse text-green-300"></i>
+    {% elif device.enabled %}
+      <i class="fa-solid fa-circle-question text-orange-300"></i>
+    {% else %}
+      <i class="fa-solid fa-square-xmark text-red-300"></i>
+    {% endif %}
+  </h1>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Skjermer</h2>
+  <div class="grid grid-cols-1 {% if not device.screens.all|length == 1 %}md:grid-cols-2{% endif %} auto-rows-fr gap-8">
+  {% for screen in device.screens.all %}
+    <div class="rounded-lg px-2 py-3 bg-gray-800">
+      <div class="flex flex-row justify-around items-center">
+        <h3 class="text-lg font-bold">
+          {% if screen.pulsing %}
+            <i class="fa-solid fa-heart-pulse pr-1 text-green-300"></i>
+          {% elif screen.enabled %}
+            <i class="fa-solid fa-circle-question pr-1 text-orange-300"></i>
+          {% else %}
+            <i class="fa-solid fa-square-xmark pr-1 text-red-300"></i>
+          {% endif %}
+          {{ screen }}
+          <a href="{% url 'view_screen' screen.id %}"><i class="fa-solid fa-external-link"></i></a>
+        </h3>
+        <p>
+          Siste puls:
+          {% if screen.last_pulse %}
+            {{ screen.last_pulse|date:"j.b Y, H:i" }}
+          {% else %}
+            <i>Aldri registrert en puls</i>
+          {% endif %}
+        </p>
+      </div>
+      <div class="border-y border-white mt-2 mb-2 w-full"></div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="{% url 'screen_viewer' device.id %}" frameborder="0" scrolling="no"></iframe>
+      </div>
+      <table class="table-auto mx-auto">
+        <thead>
+          <tr>
+            <th class="sr-only">Tidsperiode aktiv</th>
+            <th class="text-left font-bold px-1">Tidsperiode</th>
+            <th class="text-left font-bold px-1">Slideshow</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for slideshow_schedule in screen.slideshow_schedules.all %}
+            <tr>
+              {% if slideshow_schedule.schedule.cron_active %}
+                <td class="w-0 text-green-300"><i class="fa-solid fa-circle-play"></i></td>
+              {% else %}
+                <td class="w-0 text-orange-300"><i class="fa-solid fa-circle-pause"></i></td>
+              {% endif %}
+              <td class="px-1">{{ slideshow_schedule.schedule.name }}</td>
+              <td class="px-1">
+                {{ slideshow_schedule.slideshow.name }}
+                <a href="{% url 'view_slideshow' slideshow_schedule.slideshow.id %}"><i class="fa-solid fa-external-link"></i></a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3" class="text-center italic">Ingen skjermer eller slideshows</td>
+            </tr>
+          {% endfor %}
+      </table>
+    </div>
+  {% empty %}
+    <p class="italic">Ingen skjermer er registrert på denne enheten.</p>
+  {% endfor %}
+  </div>
+
+  {% if device.host_ip and device.ssh_private_key and request.user.is_superuser %}
+    <h2 class="text-xl font-bold pt-3 pb-1">Enhetsadministrering</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-fr gap-4">
+      <a class="rounded-sm text-center bg-yellow-800 text-yellow-200 h-full w-full px-2 py-3" href="{% url 'restart_all_pages_for_device' device.id %}">Restart alle sidene</a>
+      <a class="rounded-sm text-center bg-orange-800 text-orange-200 h-full w-full px-2 py-3" href="{% url 'restart_device_service' device.id %}">Restart tjenesten</a>
+      <a class="rounded-sm text-center bg-red-800 text-red-200 h-full w-full px-2 py-3" href="{% url 'restart_device' device.id %}">Restart enhet</a>
+    </div>
+  {% endif %}
+
+  {% include "legend.html" with legends="screen-status schedule-status" %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Skjerm: {{ screen }}{% endblock %}
+
+{% load static %}
+{% block head %}
+  <script src="{% static 'js/sortable_simple_order_and_post.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">
+    Skjerm: {{ screen }}
+    {% if screen.pulsing %}
+      <i class="fa-solid fa-heart-pulse text-green-300"></i>
+    {% elif screen.enabled %}
+      <i class="fa-solid fa-circle-question text-orange-300"></i>
+    {% else %}
+      <i class="fa-solid fa-square-xmark text-red-300"></i>
+    {% endif %}
+  </h1>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Slideshows</h2>
+  <div id="sortable" class="grid grid-cols-1 {% if not screen.slideshow_schedules.all|length == 1 %}md:grid-cols-2{% endif %} auto-rows-fr gap-8">
+  {% for slideshow_schedule in screen.slideshow_schedules.all|dictsort:"screen_slideshow_order" %}
+    {% ifchanged slideshow_schedule.slideshow.id %}
+      <div data-slideshow-id="{{ slideshow_schedule.slideshow.id }}" class="rounded-lg px-2 py-3 {% if slideshow_schedule.schedule.cron_active %}bg-green-800{% else %}bg-rose-800{% endif %}">
+        <div class="flex flex-row items-center pl-2 pr-3">
+          <p class="text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-arrows-alt text-sm cursor-grab sortable-handle"></i> {{ slideshow_schedule.screen_slideshow_order }}</p>
+          <h3 class="text-lg font-bold text-center w-full">{{ slideshow_schedule.slideshow.name }}</h3>
+          <a class="text-sm" href="{% url 'view_slideshow' slideshow_schedule.slideshow.id %}"><i class="fa-solid fa-external-link"></i></a>
+        </div>
+        <div class="border-y border-white mt-2 mb-2 w-full"></div>
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe src="{% url 'slideshow_viewer' slideshow_schedule.slideshow.id %}" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <table class="table-auto mx-auto">
+        <thead>
+          <tr>
+            <th class="sr-only">Tidsperiode aktiv</th>
+            <th class="text-left font-bold px-1">Tidsperiode tilkoblet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ss in screen.slideshow_schedules.all|dictsortreversed:"schedule.cron_active" %}{% if ss.slideshow.id == slideshow_schedule.slideshow.id %}
+            <tr>
+              {% if ss.schedule.cron_active %}
+                <td class="w-0 text-green-300"><i class="fa-solid fa-circle-play"></i></td>
+              {% else %}
+                <td class="w-0 text-orange-300"><i class="fa-solid fa-circle-pause"></i></td>
+              {% endif %}
+              <td class="px-1">{{ ss.schedule.name }}</td>
+            </tr>
+          {% endif %}{% endfor %}
+        </table>
+      </div>
+    {% endifchanged %}
+  {% empty %}
+    <p class="italic">Ingen skjermer er registrert på denne enheten.</p>
+  {% endfor %}
+  </div>
+
+  <form id="form-slideshows-order" method="post">
+    {% csrf_token %}
+    <input id="form-slideshows-order-input" type="hidden" name="new_order" value="">
+    <button type="submit"></button>
+  </form>
+{% endblock %}

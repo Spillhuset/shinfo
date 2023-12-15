@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Velkommen{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">SHinfo</h1>
+  <p>
+    SHinfo systemet, veldig tydelig uttalt som "shin-foo", er et infoskjermsystem for å vise
+    informasjon på infoskjermer. Det er en mer videreutviklet versjon av <a class="text-blue-200 underline hover:text-blue-400" href="https://tg.no">The Gathering</a>'s
+    <a class="text-blue-200 underline hover:text-blue-400" href="https://github.com/gathering/tinbox">tinbox</a>-system, som er utviklet av
+    crewet Info:Systemstøtte. Glenn er, som du kunne gjettet, en del av dette crewet, og
+    har også videreutviklet dette systemet for Spillhuset og for Helset.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Kom i gang</h2>
+  <p>
+    Hele hensikten med systemet er å gjøre det enkelt for crew å endre informasjonen som vises
+    på infoskjermene. På venstresiden så ser du ulike sider. Hvis du skal redigere en skjerm så
+    ser du sannsynligvis etter <a class="text-blue-200 underline hover:text-blue-400" href="{% url 'list_slideshows' %}">Slideshows</a>. Alt annet
+    er litt mer avansert, så hvis du ikke vet hva du gjør så ikke gjør det. Enkelt og greit.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Hvordan setter jeg opp en ny skjerm?</h2>
+  <p>
+    Hvis det er ønskelig at en infoskjerm settes opp så kontakter du Glenn. Han er en grei fyr,
+    og biter kun på tirsdager... - så lenge du ikke spør på en tirsdag så går det nok bra. Det
+    er litt avansert å sette opp en ny skjerm, så det er ønskelig at det gjøres gjennom Glenn.
+    Vi bruker enten Raspberry Pi eller gamle PCer som kjører Linux, og hvis du leter etter en
+    Pi du kan bruke så er allerede noen satt opp og klare til bruk. Sjekk boden i salen om du
+    finner noen.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Test-miljø</h2>
+  <p>
+    Husk at det er et eget testmiljø som crew kan bruke for å teste ut systemet. Mer informasjon om
+    dette testmiljøet ligger på Discord. Hvis du allerede er på testmiljø: gratulerer. Takk for at du
+    ikke cucker over produksjonsmiljøet vårt.
+  </p>
+{% endblock %}

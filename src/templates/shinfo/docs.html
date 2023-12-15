@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Dokumentasjon{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">SHinfo Dokumentasjon (for ekte nerder)</h1>
+  <p>
+    Dette er et ekstremt komplisert system, med et brukergrensesnitt som skal være enkelt. Alt
+    av tilbakemelding tas imot med takk, og hvis du har noen spørsmål så er det bare å spørre
+    Glenn.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Bakgrunn</h2>
+  <p class="pt-1">
+    Konseptet er dratt ut av <a class="text-blue-200 underline hover:text-blue-400" href="https://tg.no">The Gathering</a>'s
+    <a class="text-blue-200 underline hover:text-blue-400" href="https://github.com/gathering/tinbox">tinbox</a>-system
+    som er, enkelt og greit, et infoskjermsystem. Det er laget for å kunne vise informasjon på
+    infoskjermer, og det er det vi bruker det til her også. Sånn tinbox-systemet fungerer er at
+    hver skjerm har en egen ID, som er koblet til ét slideshow og ét "master" slideshow. Dette
+    var mest praktisk og ideelt for The Gathering, og vi brukte det bare i påsken, så dette
+    trengte ikke bli altfor komplisert.
+  </p>
+  <p class="pt-1">
+    Nå er Glenn med i bildet. Da blir ting litt komplisert behind-the-scenes, og jeg har prøvd å
+    gjøre det enkelt å forstå denne dokumentasjonen - med forbehold om noen feil og mangler.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Hvordan henger alt sammen?</h2>
+  <p class="pt-1">
+    For å ha en infoskjerm i dette systemet så er det fem komponenter som må på plass: en enhet,
+    en skjerm, et slideshow med slides, en tidsperiode og en kobling mellom tidsperioden,
+    slideshowet og skjermen. Dokumentasjonen går innom alle komponentene enkeltvis.
+  </p>
+  <p class="pt-1">
+    Men nå lurer du kanskje på hvorfor det er så overkomplisert? Per dags dato så er vi på et bygg
+    som er delt mellom flere enn bare Spillhuset. Og det er til tider ideelt med f.eks. Spillhuset-
+    innhold og andre ganger ideelt med annet innhold på skjermene. Den mest praktiske løsningen,
+    både for utviklingen og for brukere av systemet, er å gjøre det på denne måten. Det er også
+    forespurt enkle måter å administrere selve skjermen, eks. restarte skjermen eller restarte
+    hele enheten, og derfor ble det gjort på denne måten.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Enhet</h2>
+  <p class="pt-1">
+    En "enhet" er en fysisk enhet. En enhet kan ha én skjerm, eller tre skjermer, eller fire hundre
+    skjermer. Meningen er å systematisk ha en peiling på hvilken infoskjerm som er koblet til hvilken
+    enhet.
+  </p>
+  <p>
+  <p class="pt-1">
+    Det er også mulig å restarte skjermen og enheten fra denne siden. Det gjøres gjennom et
+    privat nettverk som enheten er koblet opp til, samt serveren der dette systemet kjører.
+    Det private nettverket er Glenn sitt, så derfor er det ingen andre som kan sette opp
+    enheter.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Skjerm</h2>
+  <p class="pt-1">
+    En "skjerm" er en utgang for en enhet. En enhet kan ha flere enn en skjerm, det er litt
+    avhengig av hva behovet er der den er plassert. Skjermen har en "siste puls" som oppdateres
+    hver gang skjermen henter ut data fra serveren.
+  </p>
+  <p class="pt-1">
+    Selve enheten (den "fysiske enheten") er satt opp slik at når den starter så åpner den
+    Chromium (baseline Chrome, uten jalla fra Google) i fullskjern, og åpner opp lenken til
+    skjermen.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Slideshow</h2>
+  <p class="pt-1">
+    Et "slideshow" er som en PowerPoint-presentasjon. Det er en rekke med slides som vises i
+    en spesifikk rekkefølge. Hver slideshow har en bakgrunn satt, f.eks. "Spillhuset logo nede
+    til venstre" eller "Spillhuset DVD logo". Det som er unikt med dette systemet er at en
+    slideshow ikke er koblet opp mot en skjerm direkte på noe vis. Dette gjøres gjennom en
+    tidsperiode-"trio" - jeg forklarer lenger ned.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Slide</h2>
+  <p class="pt-1">
+    En "slide" er en enkel slide i et slideshow. Den kan ha tekst, bilde, bilde med tekst,
+    video, nettside etc. Den har en lengde (hvor lenge sliden skal vises før den går over til
+    neste slide) og den kan også overstyre bakgrunnen i slideshowet. Det er også mulig å
+    sette disse i rekkefølge.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3">Tidsperiode</h2>
+  <p class="pt-1">
+    En "tidsperiode" er, veldig kort fortalt, bare en tidsperiode. Et eksempel på en relevant
+    tidsperiode er "når det er fredagsåpent på Spillhuset". Det er litt komplekst å lage en
+    tidsperiode, så hvis noe mangler så si ifra til Glenn.
+  </p>
+
+  <h3 class="text-lg font-bold pt-3">Hvordan kobler man et slideshow til en skjerm?</h2>
+  <p class="pt-1">
+    Jeg nevnte tidligere dette med en "tidsperiode-trio". Dette er egentlig bare en trio med en
+    skjerm, et slideshow og en tidsperiode. Det er denne trioen som kobler et slideshow til en
+    skjerm. For eksempel så er det ideelt å kjøre Spillhuset-relevante slideshows på skjermene
+    når det er fredagsåpent, men kanskje relevant å vise andre slideshows ellers.
+  </p>
+
+  <h3 class="text-lg font-bold pt-3">Asset</h2>
+  <p class="pt-1">
+    En "asset" er en fil som er lastet opp til serveren. Det kan være et bilde, en video, en
+    PDF etc. - som skal brukes i en slide. Måten dette er satt opp er at den har en historikk
+    som ikke kan slettes. Det er for å unngå at noen sletter en fil som er i bruk i et slideshow.
+  </p>
+{% endblock %}

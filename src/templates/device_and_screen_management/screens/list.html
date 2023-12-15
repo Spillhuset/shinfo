@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Skjermer{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">Skjermer</h1>
+  <p>
+    En skjerm er en utgang på en enhet. Det er her innhold vises, dette er den fysiske
+    skjermen. En skjerm kan være en TV, en projektor, en PC-skjerm eller lignende.
+  </p>
+
+  <h2 class="text-xl font-bold pt-3 pb-1">Liste over konfigurerte skjermer</h2>
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th class="sr-only">Aktiv</th>
+        <th class="text-left font-bold">Navn</th>
+        <th class="text-left font-bold">Enhet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for screen in screens|dictsortreversed:"enabled" %}
+        <tr>
+          {% if screen.pulsing %}
+            <td class="w-0 pr-1 text-green-300"><i class="fa-solid fa-heart-pulse"></i></td>
+          {% elif screen.enabled %}
+            <td class="w-0 pr-1 text-orange-300"><i class="fa-solid fa-circle-question"></i></td>
+          {% else %}
+            <td class="w-0 pr-1 text-red-300"><i class="fa-solid fa-square-xmark"></i></td>
+          {% endif %}
+          <td class="mx-1">
+            {{ screen }}
+            <a href="{% url 'view_screen' screen.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td>
+          <td class="mx-1">
+            {{ screen.device.name }}
+            <a href="{% url 'view_device' screen.device.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4" class="italic mx-4">Ingen skjermer er lagt til enda, men de vises her</td>
+        </tr>
+      {% endfor %}
+  </table>
+
+  {% include "legend.html" with legends="screen-status" %}
+{% endblock %}

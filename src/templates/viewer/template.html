@@ -1,0 +1,15 @@
+{% extends 'skeleton.html' %}
+
+{% load static %}
+{% block head %}
+  <script src="{% static 'js/viewer/window_fit.js' %}"></script>
+  {% block more_head %}<!-- no more head -->{% endblock %}
+{% endblock %}
+
+{% block body %}
+  <body class="m-0 p-0 font-['B612'] h-screen bg-black text-white">
+    <div class="relative w-[1920px] h-[1080px] [&>div]:absolute [&>div]:w-full [&>div]:h-full">
+      {% block content %}<!-- no content???? -->{% endblock %}
+    </div>
+  </body>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}{{ slide }}{% endblock %}
+
+{% load static %}
+{% block head %}
+  <script src="{% static 'js/viewer/window_fit.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+  <body class="m-0 p-0 font-['B612'] relative w-[1920px] h-[1080px] bg-black text-white [&>div]:absolute [&>div]:w-full [&>div]:h-full">
+    {{ background_html_body }}
+    <div>{{ slide_html_body }}</div>
+  </body>
+{% endblock %}

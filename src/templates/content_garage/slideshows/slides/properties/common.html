@@ -1,0 +1,17 @@
+<div>
+  <label for="name">Navn på slide</label>
+  <input class="bg-gray-700 rounded-lg py-1 my-1 px-2" type="text" name="name" value="{{ slide.name }}" placeholder="Infoslide til åpningstider" required>
+</div>
+<div>
+  <label for="duration">Varighet i sekunder</label>
+  <input class="bg-gray-700 rounded-lg py-1 my-1 px-2" type="number" name="duration" value="{% firstof slide.duration "10" %}" placeholder="10" required>
+</div>
+<div>
+  <label for="background">Bakgrunn</label>
+  <select class="bg-gray-700 rounded-lg py-1 my-1 px-2" name="background" required>
+    <option value="null" {% if not slide.background %}selected{% endif %}>Ingen (arver fra slideshow eller skjerm)</option>
+    {% for background in backgrounds %}
+      <option value="{{ background.0 }}" {% if slide.background == background.0 %}selected{% endif %}>{{ background.1 }}</option>
+    {% endfor %}
+  </select>
+</div>
