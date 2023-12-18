@@ -517,21 +517,21 @@ urllib3 = "*"
 
 [[package]]
 name = "django-tailwind"
-version = "3.6.0"
+version = "3.7.0"
 description = "Tailwind CSS Framework for Django projects"
 optional = false
-python-versions = ">=3.8.1,<4.0.0"
+python-versions = ">=3.10.0,<4.0.0"
 files = [
-    {file = "django_tailwind-3.6.0-py3-none-any.whl", hash = "sha256:93db0ed1c18ae21ee8ad7f19f96744f5b2322e9d9872307a06e0f45b21cbe60a"},
-    {file = "django_tailwind-3.6.0.tar.gz", hash = "sha256:d878222a4ef957d1d0f0529dcd28b0065995ca6b8c7b43b058b9214c9e7d8ec0"},
+    {file = "django_tailwind-3.7.0-py3-none-any.whl", hash = "sha256:8f1003d74be35b4e5abe135f13599205a79e124671f57e93b7601a47c0dbab61"},
+    {file = "django_tailwind-3.7.0.tar.gz", hash = "sha256:65d80d0b41c3765a70bcfb41c94d3719e2d9b8be8aa347f0fcdb298df24e150f"},
 ]
 
 [package.dependencies]
 django = ">=3.2.14"
-django-browser-reload = {version = ">=1.6.0,<2.0.0", optional = true, markers = "extra == \"reload\""}
+django-browser-reload = {version = ">=1.12.1,<2.0.0", optional = true, markers = "extra == \"reload\""}
 
 [package.extras]
-reload = ["django-browser-reload (>=1.6.0,<2.0.0)"]
+reload = ["django-browser-reload (>=1.12.1,<2.0.0)"]
 
 [[package]]
 name = "fontawesomefree"
@@ -1212,4 +1212,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.1"
-content-hash = "a2b08de857589b4714ea2c29c9d0edd42eca74d8c7a96a8de7e4c848fa8f4a4a"
+content-hash = "98d381c769c9a070e6a68eb110c7a3e115a49f6bd7a6f3270746e7bf65c6fb0a"
