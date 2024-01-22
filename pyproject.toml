@@ -17,12 +17,12 @@ django-google-fonts = "0.0.3"
 django-tailwind = {extras = ["reload"], version = "3.7.0"}
 crispy-tailwind = "0.5.0"
 django-crispy-forms = "2.1"
-cron-validator = "^1.0.8"
-daphne = "^4.0.0"
-channels = "^4.0.0"
-channels-redis = "^4.1.0"
-paramiko = "^3.3.1"
-django-mermaid = "^0.0.7"
+cron-validator = "1.0.8"
+daphne = "4.0.0"
+channels = "4.0.0"
+channels-redis = "4.1.0"
+paramiko = "3.4.0"
+django-mermaid = "0.0.7"
 
 [build-system]
 requires = ["poetry-core"]
