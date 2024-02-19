@@ -518,13 +518,13 @@ urllib3 = "*"
 
 [[package]]
 name = "django-tailwind"
-version = "3.7.0"
+version = "3.8.0"
 description = "Tailwind CSS Framework for Django projects"
 optional = false
 python-versions = ">=3.10.0,<4.0.0"
 files = [
-    {file = "django_tailwind-3.7.0-py3-none-any.whl", hash = "sha256:8f1003d74be35b4e5abe135f13599205a79e124671f57e93b7601a47c0dbab61"},
-    {file = "django_tailwind-3.7.0.tar.gz", hash = "sha256:65d80d0b41c3765a70bcfb41c94d3719e2d9b8be8aa347f0fcdb298df24e150f"},
+    {file = "django_tailwind-3.8.0-py3-none-any.whl", hash = "sha256:fa969c5b95d314b173fe2b2ed2cb2c03f2e2c94fdc2c01ff73a993fa159085da"},
+    {file = "django_tailwind-3.8.0.tar.gz", hash = "sha256:31c2f4a7879d685c2de0feaf0b63f246200b37337bea4d7dbafb59bc3f10c008"},
 ]
 
 [package.dependencies]
@@ -1213,4 +1213,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.2"
-content-hash = "ee51ff491af026a585a6cee5e6a86a10cc27a07babb50eb55ecb2ef90509d63a"
+content-hash = "493631b6ac635e7121ccff64526c50b19b1008b7227a235d5342d79cb9dd7f9c"
