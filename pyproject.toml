@@ -18,7 +18,7 @@ django-tailwind = {extras = ["reload"], version = "3.8.0"}
 crispy-tailwind = "1.0.3"
 django-crispy-forms = "2.1"
 cron-validator = "1.0.8"
-daphne = "4.1.1"
+daphne = "4.1.2"
 channels = "4.0.0"
 channels-redis = "4.2.0"
 paramiko = "3.4.0"
