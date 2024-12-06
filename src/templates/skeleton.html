@@ -1,7 +1,7 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 
-<html lang="nb">
+<html lang="{% block lang %}nb{% endblock %}">
 	<head>
     <title>{{ settings.APP_NAME }} - {% block title %}Hjem{% endblock %}</title>
 		<meta charset="UTF-8">
