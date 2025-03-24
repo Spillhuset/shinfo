@@ -553,13 +553,13 @@ tinycss2 = ">=1.2.1"
 
 [[package]]
 name = "django-mermaid"
-version = "0.0.8"
+version = "0.0.9"
 description = "Django template tag for rendering mermaid diagrams."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "django_mermaid-0.0.8-py3-none-any.whl", hash = "sha256:72c0abb046111726474a77fb7b4d71494f059b02fcf19606c08a7167e58e6e96"},
-    {file = "django_mermaid-0.0.8.tar.gz", hash = "sha256:8d2ee0938b2dab199d352a5c69f0673594c2833707b9129a238c2e3eebdd74cd"},
+    {file = "django_mermaid-0.0.9-py3-none-any.whl", hash = "sha256:a51da46d42d80fb7a2fe5e7afd55e69b0dc6b9850ac3e7e22b26bd22e35d5fd3"},
+    {file = "django_mermaid-0.0.9.tar.gz", hash = "sha256:5531a0048007f5c4a8935f5e4416ea2888e913e73d996cf3703c70919132bf7f"},
 ]
 
 [package.dependencies]
@@ -1249,4 +1249,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.13.2"
-content-hash = "ab75fc95ea66fa38117413e436fddb674fe7ad38473a1f9fbfc241050dcfd422"
+content-hash = "25c39b7637cb0a05a911d8eb3e4ae94852820698203a24862a9b172756dd2b76"
