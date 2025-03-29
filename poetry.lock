@@ -232,13 +232,13 @@ pycparser = "*"
 
 [[package]]
 name = "channels"
-version = "4.2.0"
+version = "4.2.1"
 description = "Brings async, event-driven capabilities to Django."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "channels-4.2.0-py3-none-any.whl", hash = "sha256:6b75bc8d6888fb7236e7e7bf1948520b72d296ad08216a242fc56b1db0ffde1a"},
-    {file = "channels-4.2.0.tar.gz", hash = "sha256:d9e707487431ba5dbce9af982970dab3b0efd786580fadb99e45dca5e39fdd59"},
+    {file = "channels-4.2.1-py3-none-any.whl", hash = "sha256:e91701d9d5a55a45a63d5fccac7601ba118ec97d56ba477cbbd0d1764aefeaf2"},
+    {file = "channels-4.2.1.tar.gz", hash = "sha256:dc3d56c8e5b2bcd73320e410ee13e5a1970b535d9327c82dc397f2e13eaa60a8"},
 ]
 
 [package.dependencies]
@@ -1249,4 +1249,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.13.2"
-content-hash = "25c39b7637cb0a05a911d8eb3e4ae94852820698203a24862a9b172756dd2b76"
+content-hash = "9c135d2bbdf749a396ae46fbd56fa9ebd158483e277dc35cae2c84b79684518d"
