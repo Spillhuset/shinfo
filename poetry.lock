@@ -64,13 +64,13 @@ xbr = ["base58 (>=2.1.0)", "bitarray (>=2.7.5)", "cbor2 (>=5.2.0)", "click (>=8.
 
 [[package]]
 name = "automat"
-version = "24.8.1"
+version = "25.4.16"
 description = "Self-service finite-state machines for the programmer on the go."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "Automat-24.8.1-py3-none-any.whl", hash = "sha256:bf029a7bc3da1e2c24da2343e7598affaa9f10bf0ab63ff808566ce90551e02a"},
-    {file = "automat-24.8.1.tar.gz", hash = "sha256:b34227cf63f6325b8ad2399ede780675083e439b20c323d376373d8ee6306d88"},
+    {file = "automat-25.4.16-py3-none-any.whl", hash = "sha256:04e9bce696a8d5671ee698005af6e5a9fa15354140a87f4870744604dcdd3ba1"},
+    {file = "automat-25.4.16.tar.gz", hash = "sha256:0017591a5477066e90d26b0e696ddc143baafd87b588cfac8100bc6be9634de0"},
 ]
 
 [package.extras]
@@ -142,13 +142,13 @@ typecheck = ["mypy"]
 
 [[package]]
 name = "certifi"
-version = "2025.1.31"
+version = "2025.4.26"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "certifi-2025.1.31-py3-none-any.whl", hash = "sha256:ca78db4565a652026a4db2bcdf68f2fb589ea80d0be70e03929ed730746b84fe"},
-    {file = "certifi-2025.1.31.tar.gz", hash = "sha256:3d5da6925056f6f18f119200434a4780a94263f10d1c21d032a6f6b2baa20651"},
+    {file = "certifi-2025.4.26-py3-none-any.whl", hash = "sha256:30350364dfe371162649852c63336a15c70c6510c2ad5015b21c2345311805f3"},
+    {file = "certifi-2025.4.26.tar.gz", hash = "sha256:0a816057ea3cdefcef70270d2c515e4506bbc954f417fa5ade2021213bb8f0c6"},
 ]
 
 [[package]]
@@ -739,13 +739,13 @@ files = [
 
 [[package]]
 name = "packaging"
-version = "24.2"
+version = "25.0"
 description = "Core utilities for Python packages"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759"},
-    {file = "packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"},
+    {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
+    {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
 ]
 
 [[package]]
@@ -970,18 +970,19 @@ files = [
 
 [[package]]
 name = "redis"
-version = "5.2.1"
+version = "6.0.0"
 description = "Python client for Redis database and key-value store"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "redis-5.2.1-py3-none-any.whl", hash = "sha256:ee7e1056b9aea0f04c6c2ed59452947f34c4940ee025f5dd83e6a6418b6989e4"},
-    {file = "redis-5.2.1.tar.gz", hash = "sha256:16f2e22dff21d5125e8481515e386711a34cbec50f0e44413dd7d9c060a54e0f"},
+    {file = "redis-6.0.0-py3-none-any.whl", hash = "sha256:a2e040aee2cdd947be1fa3a32e35a956cd839cc4c1dbbe4b2cdee5b9623fd27c"},
+    {file = "redis-6.0.0.tar.gz", hash = "sha256:5446780d2425b787ed89c91ddbfa1be6d32370a636c8fdb687f11b1c26c1fa88"},
 ]
 
 [package.extras]
 hiredis = ["hiredis (>=3.0.0)"]
-ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"]
+jwt = ["pyjwt (>=2.9.0,<2.10.0)"]
+ocsp = ["cryptography (>=36.0.1)", "pyopenssl (>=20.0.1)", "requests (>=2.31.0)"]
 
 [[package]]
 name = "requests"
@@ -1030,13 +1031,13 @@ tests = ["coverage[toml] (>=5.0.2)", "pytest"]
 
 [[package]]
 name = "setuptools"
-version = "78.1.0"
+version = "80.1.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "setuptools-78.1.0-py3-none-any.whl", hash = "sha256:3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"},
-    {file = "setuptools-78.1.0.tar.gz", hash = "sha256:18fd474d4a82a5f83dac888df697af65afa82dec7323d09c3e37d1f14288da54"},
+    {file = "setuptools-80.1.0-py3-none-any.whl", hash = "sha256:ea0e7655c05b74819f82e76e11a85b31779fee7c4969e82f72bab0664e8317e4"},
+    {file = "setuptools-80.1.0.tar.gz", hash = "sha256:2e308396e1d83de287ada2c2fd6e64286008fe6aca5008e0b6a8cb0e2c86eedd"},
 ]
 
 [package.extras]
@@ -1148,13 +1149,13 @@ twisted = ["twisted (>=20.3.0)", "zope.interface (>=5.2.0)"]
 
 [[package]]
 name = "typing-extensions"
-version = "4.13.0"
+version = "4.13.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.13.0-py3-none-any.whl", hash = "sha256:c8dd92cc0d6425a97c18fbb9d1954e5ff92c1ca881a309c45f06ebc0b79058e5"},
-    {file = "typing_extensions-4.13.0.tar.gz", hash = "sha256:0a4ac55a5820789d87e297727d229866c9650f6521b64206413c4fbada24d95b"},
+    {file = "typing_extensions-4.13.2-py3-none-any.whl", hash = "sha256:a439e7c04b49fec3e5d3e2beaa21755cadbbdc391694e28ccdd36ca4a1408f8c"},
+    {file = "typing_extensions-4.13.2.tar.gz", hash = "sha256:e6c81219bd689f51865d9e372991c540bda33a0379d5573cddb9a3a23f7caaef"},
 ]
 
 [[package]]
@@ -1170,13 +1171,13 @@ files = [
 
 [[package]]
 name = "urllib3"
-version = "2.3.0"
+version = "2.4.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "urllib3-2.3.0-py3-none-any.whl", hash = "sha256:1cee9ad369867bfdbbb48b7dd50374c0967a0bb7710050facf0dd6911440e3df"},
-    {file = "urllib3-2.3.0.tar.gz", hash = "sha256:f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d"},
+    {file = "urllib3-2.4.0-py3-none-any.whl", hash = "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813"},
+    {file = "urllib3-2.4.0.tar.gz", hash = "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466"},
 ]
 
 [package.extras]
