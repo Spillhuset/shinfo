@@ -3,16 +3,22 @@
 {% block title %}Enhet: {{ device.name }}{% endblock %}
 
 {% block content %}
-  <h1 class="text-2xl font-bold border-b border-white pt-3 pb-2 mb-2">
-    Enhet: {{ device.name }}
-    {% if device.pulsing %}
-      <i class="fa-solid fa-heart-pulse text-green-300"></i>
-    {% elif device.enabled %}
-      <i class="fa-solid fa-circle-question text-orange-300"></i>
-    {% else %}
-      <i class="fa-solid fa-square-xmark text-red-300"></i>
-    {% endif %}
-  </h1>
+  <div class="border-b border-white pt-3 pb-2 mb-2 flex flex-col sm:flex-row items-center gap-2">
+    <h1 class="text-2xl font-bold">Enhet: {{ device.name }}
+      {% if device.pulsing %}
+        <i class="fa-solid fa-heart-pulse text-green-300"></i>
+      {% elif device.enabled %}
+        <i class="fa-solid fa-circle-question text-orange-300"></i>
+      {% else %}
+        <i class="fa-solid fa-square-xmark text-red-300"></i>
+      {% endif %}
+    </h1>
+    <div class="sm:ml-auto">
+      {% if device.host_ip and device.ssh_private_key %}
+        <a class="bg-blue-500 hover:bg-blur-600 rounded-lg py-1 my-1 px-2 sm:my-0 sm:ml-2 whitespace-nowrap" href="{% url 'restart_device' device.id %}">Restart</a>
+      {% endif %}
+    </div>
+  </div>
 
   <h2 class="text-xl font-bold pt-3 pb-1">Skjermer</h2>
   <div class="grid grid-cols-1 {% if not device.screens.all|length == 1 %}md:grid-cols-2{% endif %} auto-rows-fr gap-8">
@@ -76,15 +82,6 @@
     <p class="italic">Ingen skjermer er registrert på denne enheten.</p>
   {% endfor %}
   </div>
-
-  {% if device.host_ip and device.ssh_private_key and request.user.is_superuser %}
-    <h2 class="text-xl font-bold pt-3 pb-1">Enhetsadministrering</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-fr gap-4">
-      <a class="rounded-sm text-center bg-yellow-800 text-yellow-200 h-full w-full px-2 py-3" href="{% url 'restart_all_pages_for_device' device.id %}">Restart alle sidene</a>
-      <a class="rounded-sm text-center bg-orange-800 text-orange-200 h-full w-full px-2 py-3" href="{% url 'restart_device_service' device.id %}">Restart tjenesten</a>
-      <a class="rounded-sm text-center bg-red-800 text-red-200 h-full w-full px-2 py-3" href="{% url 'restart_device' device.id %}">Restart enhet</a>
-    </div>
-  {% endif %}
 
   {% include "legend.html" with legends="screen-status schedule-status" %}
 {% endblock %}

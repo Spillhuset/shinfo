@@ -30,7 +30,6 @@ function createWs() {
   newWs.onmessage = (e) => {
     const data = JSON.parse(e.data);
     onWsMessage(data);
-    if (data.type === "reload_screen") window.location.reload();
   }
 
   return newWs;

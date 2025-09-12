@@ -5,8 +5,6 @@ urlpatterns = [
   # devices
   path("devices", views.list_devices, name="list_devices"),
   path("devices/<int:device_id>", views.view_device, name="view_device"),
-  path("devices/<int:device_id>/restart_all_pages", views.restart_all_pages_for_device, name="restart_all_pages_for_device"),
-  path("devices/<int:device_id>/restart_service", views.restart_device_service, name="restart_device_service"),
   path("devices/<int:device_id>/restart", views.restart_device, name="restart_device"),
 
   # screens

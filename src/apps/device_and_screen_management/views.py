@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
 
 from .models import *
 
@@ -19,19 +17,7 @@ def view_device(request, device_id):
   device = Device.objects.get(id=device_id)
   return render(request, "device_and_screen_management/devices/view.html", {"device": device})
 
-def restart_all_pages_for_device(request, device_id):
-  device = Device.objects.get(id=device_id)
-  channel_layer = get_channel_layer()
-  for screen in device.screens.all(): async_to_sync(channel_layer.group_send)(f"infoscreen_{screen.id}", {"type": "refresh"})
-  return redirect("view_device", device_id=device_id)
-
-def restart_device_service(request, device_id):
-  device = Device.objects.get(id=device_id)
-  if device.host_ip and device.ssh_private_key:
-    ssh_send(device.host_ip, device.ssh_private_key, "systemctl restart kiosk.service")
-    return redirect("view_device", device_id=device_id)
-  return render(request, "errors/400.html", status=400)
-
+@login_required
 def restart_device(request, device_id):
   device = Device.objects.get(id=device_id)
   if device.host_ip and device.ssh_private_key:
