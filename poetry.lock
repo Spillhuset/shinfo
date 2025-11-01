@@ -1007,7 +1007,7 @@ files = [
 ]
 
 [package.dependencies]
-cffi = {version = ">=1.4.1", markers = "platform_python_implementation != \"PyPy\" and python_version < \"3.14\""}
+cffi = {version = ">=2.0.0", markers = "platform_python_implementation != \"PyPy\" and python_version >= \"3.14\""}
 
 [package.extras]
 docs = ["sphinx (<7)", "sphinx_rtd_theme"]
@@ -1334,5 +1334,5 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "3.13.7"
-content-hash = "90d1d076d215152d8a7ceb7b3ec3568e272b45fcd14d537c4d7a252281a5b61c"
+python-versions = "3.14.0"
+content-hash = "44b89ab28ba2bd9dfe73e2bf6b593253a25f7ba811903612cb8dc69f021134a4"
