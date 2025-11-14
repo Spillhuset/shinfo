@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: postgres:16-alpine@sha256:784154dc14b3e4b2c2f6332df81f9fa72c82f1a00ebf8dbff1341449903936aa
+    image: postgres:16-alpine@sha256:236d1ccc720e386c4e03facd46a107c34bc872858e6808c27d522032dfd5e273
     restart: unless-stopped
     volumes:
       - ./database:/var/lib/postgresql/data
