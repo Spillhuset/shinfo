@@ -549,13 +549,13 @@ test-randomorder = ["pytest-randomly"]
 
 [[package]]
 name = "daphne"
-version = "4.1.2"
+version = "4.2.1"
 description = "Django ASGI (HTTP/WebSocket) server"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "daphne-4.1.2-py3-none-any.whl", hash = "sha256:618d1322bb4d875342b99dd2a10da2d9aae7ee3645f765965fdc1e658ea5290a"},
-    {file = "daphne-4.1.2.tar.gz", hash = "sha256:fcbcace38eb86624ae247c7ffdc8ac12f155d7d19eafac4247381896d6f33761"},
+    {file = "daphne-4.2.1-py3-none-any.whl", hash = "sha256:881e96b387b95b35ad85acd855f229d7f5b79073d6649089c8a33f661885e055"},
+    {file = "daphne-4.2.1.tar.gz", hash = "sha256:5f898e700a1fda7addf1541d7c328606415e96a7bd768405f0463c312fcb31b3"},
 ]
 
 [package.dependencies]
@@ -564,7 +564,7 @@ autobahn = ">=22.4.2"
 twisted = {version = ">=22.4", extras = ["tls"]}
 
 [package.extras]
-tests = ["django", "hypothesis", "pytest", "pytest-asyncio"]
+tests = ["black", "django", "flake8", "flake8-bugbear", "hypothesis", "mypy", "pytest", "pytest-asyncio", "pytest-cov", "tox"]
 
 [[package]]
 name = "django"
@@ -1350,4 +1350,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.14.0"
-content-hash = "3f20df6d37bb0d207acd085750d6787697c0a2bfd989767ee3e4bae4aa7ea604"
+content-hash = "5c12aeec168812cb9a2a332dbf1bfc9fb276482d168a09c63a0ebe53babefce3"
