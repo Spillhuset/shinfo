@@ -761,23 +761,23 @@ tests = ["black", "django", "flake8", "flake8-bugbear", "hypothesis", "mypy", "p
 
 [[package]]
 name = "django"
-version = "5.2.18"
+version = "6.1.2"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.12"
 files = [
-    {file = "django-5.2.18-py3-none-any.whl", hash = "sha256:92ed81d500be6408ecd704d7bd1366c534f30427bffcc63c5fefb129561aec7c"},
-    {file = "django-5.2.18.tar.gz", hash = "sha256:461c5dd06d2ea16bd5ca37d3f46e4def1d6b0fe7588c6f4e2119517bb0af8b2d"},
+    {file = "django-6.1.2-py3-none-any.whl", hash = "sha256:141efee6ec64d1db6db90683bf734c550102450f444fb099063b0be1bd27d991"},
+    {file = "django-6.1.2.tar.gz", hash = "sha256:a1e92451ccb8b514e91bbb3b6d186d20b4030558f116b5d9de6535455ff210b7"},
 ]
 
 [package.dependencies]
-asgiref = ">=3.8.1"
-sqlparse = ">=0.3.1"
+asgiref = ">=3.9.1"
+sqlparse = ">=0.5.0"
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
 [package.extras]
-argon2 = ["argon2-cffi (>=19.1.0)"]
-bcrypt = ["bcrypt"]
+argon2 = ["argon2-cffi (>=23.1.0)"]
+bcrypt = ["bcrypt (>=4.1.1)"]
 
 [[package]]
 name = "django-browser-reload"
@@ -1653,4 +1653,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.14.8"
-content-hash = "a3de16b5a3cb5e4b21ec013c4b44d558c81defb9039260e31ce9c8b339fd658e"
+content-hash = "2021d289ed82f50d747289b8ee5a2440769f5166ee845ad272c4ae16619c05ec"
